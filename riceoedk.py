@@ -4,17 +4,10 @@ import os
 from streamlit_gsheets import GSheetsConnection
 
 # Create a connection object.
+# Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
 
-try:
-    # Attempt to read data from the Google Sheet
-    sheet_df = conn.read(sheet_name="Sheet1")
-    
-    # Display the first few rows of the sheet to confirm the connection
-    st.write(sheet_df.head())
-    st.success("Connection to Google Sheets was successful!")
-except Exception as e:
-    st.error(f"Failed to connect to Google Sheets: {str(e)}")
+df = conn.read()
     
 st.set_page_config(
     page_title="ECMO",
