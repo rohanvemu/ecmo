@@ -1,28 +1,16 @@
 import pandas as pd  # read csv, df manipulation
 import streamlit as st  #
 import os
+from streamlit_gsheets import GSheetsConnection
 
-# Function to save data to a CSV file
-def save_to_csv(name, email, message):
-    # Define the file name
-    file_name = "interested_students.csv"
-    
-    # Create a dictionary for the new row
-    new_row = {"Name": name, "Email": email, "Message": message}
-    
-    # Check if the file already exists
-    if os.path.exists(file_name):
-        # If the file exists, load it
-        df = pd.read_csv(file_name)
-        # Concatenate the new row to the DataFrame
-        df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
-    else:
-        # If the file doesn't exist, create a new DataFrame
-        df = pd.DataFrame([new_row])
-    
-    # Save the updated DataFrame back to the CSV file
-    df.to_csv(file_name, index=False)
-######  
+# Create a connection object.
+conn = st.connection("gsheets", type=GSheetsConnection)
+df = conn.read()
+print(df)
+
+# Print results.
+for row in df.itertuples():
+    st.write(f"{row.name} has a :{row.pet}:")
     
 st.set_page_config(
     page_title="ECMO",
