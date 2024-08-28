@@ -5,9 +5,8 @@ from streamlit_gsheets import GSheetsConnection
 
 # Create a connection object.
 # Create a connection object.
-conn = st.connection("gsheets", type=GSheetsConnection)
-
-df = conn.read()
+spreadsheet_url = st.secrets["connections"]["gsheets"]["spreadsheet"]
+df = conn.read(spreadsheet=spreadsheet_url)
     
 st.set_page_config(
     page_title="ECMO",
