@@ -5,15 +5,15 @@ from streamlit_gsheets import GSheetsConnection
 
 # Create a connection object.
 # Create a connection object.
-spreadsheet_url = st.secrets["connections"]["gsheets"]["spreadsheet"]
-
-conn = st.connection("gsheets", type=GSheetsConnection)
     
 st.set_page_config(
     page_title="ECMO",
     page_icon=":hospital:",
     layout="wide",
 )
+
+spreadsheet_url = st.secrets["connections"]["gsheets"]["spreadsheet"]
+conn = st.connection("gsheets", type=GSheetsConnection)
 
 # Page Title
 st.markdown('<h1 style="color:red;"> Ultrasound-Guided Continuous Coagulation Monitoring for ECMO</h1>', unsafe_allow_html=True)
