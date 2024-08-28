@@ -5,7 +5,7 @@ from streamlit_gsheets import GSheetsConnection
 
 # Create a connection object.
 # Create a connection object.
-spreadsheet_url = st.secrets["connections.gsheets"]["spreadsheet"]
+spreadsheet_url = st.secrets["connections"]["gsheets"]["spreadsheet"]
 
 conn = st.connection("gsheets", type=GSheetsConnection)
 df = conn.read()
